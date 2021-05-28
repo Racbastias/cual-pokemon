@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <title>Fotos</title>
+    <title>¿Quién es este Pokémon?</title>
 
 
 </head>
@@ -20,14 +20,17 @@
         </div>
     </div>
     <div class="row">
-        <div class= "col" id="imagenes">
+        <div class= "col-8" id="imagenes">
         </div>
         <div class="col-4 bg-light p-3 h-100 text-center" id="pokedex" style="border:30px solid red">
                 <h2 class="text-center">Pókedex</h2>
                 <h3 class="text-center text-danger"><span id="name"></span></h3>
                 <img id="pokeimage1"><img id="pokeimage2">
+                <p>Sprite Normal</p>
+                <hr>
                 <img id="pokeimage3"><img id="pokeimage4">
-                <img src="" id="imgselected">
+                <p>Sprite Shine</p>
+                <hr>
                 <h4>Tipo: <span id="tipo"></span></h4>
                 <h4>Altura: <span id="altura" class="text-danger"></span><span class="text-danger">0 cms</span></h4>
                 <h4>Peso: <span id="peso" class="text-danger"></span><span class="text-danger">0 gr</span></h4>
@@ -51,6 +54,8 @@
                 $('#peso').css('text-transform','capitalize').html(pokemonql.weight);
                 $('#pokeimage1').attr('src',pokemonql.sprites.front_default).html('<p>Sprites Normales</p>');
                 $('#pokeimage2').attr('src',pokemonql.sprites.back_default);
+                $('#pokeimage3').attr('src',pokemonql.sprites.front_shiny).html('<p>Sprites Normales</p>');
+                $('#pokeimage4').attr('src',pokemonql.sprites.back_shiny);
                 for (i=0; i<pokemonql.types.length; i++) {
                     $('#tipo').css('text-transform','capitalize').html(pokemonql.types[0].type.name);
                     console.log(pokemonql.types[i].type.name)
