@@ -22,7 +22,7 @@
     <div class="row">
         <div class= "col-8" id="imagenes">
         </div>
-        <div class="col-4 bg-light p-3 h-100 text-center" id="pokedex" style="border:5px solid red">
+        <div class="col-4 bg-light p-3 h-100 text-center" id="pokedex" style="border:5px solid red; position:fixed; left: 65%; max-height: 550px;" >
                 <h2 class="text-center">Pókedex</h2>
                 <h3 class="text-center text-danger"><span id="name"></span></h3>
                 <img id="pokeimage1"><img id="pokeimage2">
@@ -46,9 +46,11 @@
             $('#imagenes').append(`<div class="col-2 d-inline-block"><img id="${i}" src="http://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png"></div>`);
         };
         $('img').on('click', function() {
+            $('#tipo').html('');
             const pokemono = $(this).attr('id');
             let pokemonql ={};
-            $.get('https://pokeapi.co/api/v2/pokemon/'+pokemono+'/', function(pokedata) { pokemonql = pokedata;
+            $.get('https://pokeapi.co/api/v2/pokemon/'+pokemono+'/', function(pokedata) {
+                pokemonql = pokedata;
                 $('#name').css('text-transform','capitalize').html(pokemonql.name);
                 $('#altura').css('text-transform','capitalize').html(pokemonql.height);
                 $('#peso').css('text-transform','capitalize').html(pokemonql.weight);
@@ -56,10 +58,12 @@
                 $('#pokeimage2').attr('src',pokemonql.sprites.back_default);
                 $('#pokeimage3').attr('src',pokemonql.sprites.front_shiny).html('<p>Sprites Normales</p>');
                 $('#pokeimage4').attr('src',pokemonql.sprites.back_shiny);
+                const types = [];
                 for (i=0; i<pokemonql.types.length; i++) {
-                    $('#tipo').css('text-transform','capitalize').html(pokemonql.types[0].type.name);
+                    types.push(pokemonql.types[i].type.name);
                     console.log(pokemonql.types[i].type.name)
                 }
+                $('#tipo').css('text-transform','capitalize').append(types.join(' - '));
             });
         });
 
