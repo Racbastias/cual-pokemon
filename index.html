@@ -34,6 +34,7 @@
                 <h4>Tipo: <span id="tipo"></span></h4>
                 <h4>Altura: <span id="altura" class="text-danger"></span><span class="text-danger">0 cms</span></h4>
                 <h4>Peso: <span id="peso" class="text-danger"></span><span class="text-danger">0 gr</span></h4>
+                <!--<h4>Ubicación: <span id="location"></span></h4> -->
         </div>
         
 </body>
@@ -47,6 +48,7 @@
         };
         $('img').on('click', function() {
             $('#tipo').html('');
+            $('#location').html('');
             const pokemono = $(this).attr('id');
             let pokemonql ={};
             $.get('https://pokeapi.co/api/v2/pokemon/'+pokemono+'/', function(pokedata) {
@@ -63,6 +65,13 @@
                     types.push(pokemonql.types[i].type.name);
                 }
                 $('#tipo').css('text-transform','capitalize').append(types.join(' - '));
+                //$.get(pokemonql.location_area_encounters, function(locations) {
+                    //let names =[];
+                    //for (let i=0; i<locations.length; i++) {
+                        //names.push(locations[i].location_area.name);
+                    //}
+                    //$('#location').css('text-transform','capitalize').append(names.join(' - '));
+                    //});
             });
         });
 
